@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import isMobile from "ismobilejs";
-import Styles from "../scss/components/ReturnToHome.module.scss";
+import { isMobile } from "react-device-detect";
+import Styles from "../../scss/components/GitHub.module.scss";
 
-// Common "Return To Home" Link
-const ReturnToHome = (props: { theme: "light" | "dark" }) => {
-  const { theme } = props;
+// GitHub Link
+type GitHubLinkType = {
+  theme: "light" | "dark";
+  url: string;
+};
+
+export const GitHub = (props: GitHubLinkType) => {
+  const { theme, url } = props;
   const [hover, setHover] = useState(false);
 
   const onMouseHandler = (state: boolean) => {
-    if (isMobile().any) return;
+    if (isMobile) return;
     setHover(state);
   };
 
   const onTouchHandler = (state: boolean) => {
-    if (!isMobile().any) return;
+    if (!isMobile) return;
     setHover(state);
   };
 
@@ -25,15 +30,13 @@ const ReturnToHome = (props: { theme: "light" | "dark" }) => {
       onBlur={() => onMouseHandler(false)}
       onTouchStart={() => onTouchHandler(true)}
       onTouchEnd={() => onTouchHandler(false)}
-      className={`${Styles.return_to_home} ${
-        theme === "light" ? Styles.light : ""
-      } ${hover ? Styles.on : ""}`}
+      className={`${Styles.github} ${theme === "light" ? Styles.light : ""} ${
+        hover ? Styles.on : ""
+      }`}
     >
-      <a href="/" title="HOME">
-        HOME
+      <a href={url} target="_blank" title="GitHub" rel="noreferrer">
+        GitHub
       </a>
     </div>
   );
 };
-
-export default ReturnToHome;

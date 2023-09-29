@@ -6,6 +6,7 @@ specifiers:
   '@testing-library/user-event': ^14.5.1
   '@types/jest': ^29.5.5
   '@types/node': ^20.7.2
+  '@types/p5': ^1.7.0
   '@types/react': ^18.2.23
   '@types/react-dom': ^18.2.8
   '@typescript-eslint/eslint-plugin': ^6.7.3
@@ -16,11 +17,11 @@ specifiers:
   eslint-plugin-jsx-a11y: ^6.7.1
   eslint-plugin-react: ^7.33.2
   eslint-plugin-react-hooks: ^4.6.0
-  ismobilejs: ^1.1.1
   p5: ^1.7.0
   prettier: ^3.0.3
   prettier-eslint: ^15.0.1
   react: ^18.2.0
+  react-device-detect: ^2.2.3
   react-dom: ^18.2.0
   react-p5: ^1.3.22
   react-scripts: 5.0.1
@@ -36,9 +37,9 @@ dependencies:
   '@types/node': 20.7.2
   '@types/react': 18.2.23
   '@types/react-dom': 18.2.8
-  ismobilejs: 1.1.1
   p5: 1.7.0
   react: 18.2.0
+  react-device-detect: 2.2.3_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   react-p5: 1.4.1_biqbaboplfbrettd7655fr4n2y
   react-scripts: 5.0.1_oudbrnfe3g6sogpsopywy5ckaq
@@ -47,6 +48,7 @@ dependencies:
   web-vitals: 3.5.0
 
 devDependencies:
+  '@types/p5': 1.7.0
   '@typescript-eslint/eslint-plugin': 6.7.3_ptdtxirkj6smbsapfa2xu7c5iq
   '@typescript-eslint/parser': 6.7.3_jk7qbkaijtltyu4ajmze3dfiwa
   eslint-config-airbnb: 19.0.4_guzvj7gquc25zefilzm6da3qvu
@@ -2546,7 +2548,6 @@ packages:
 
   /@types/p5/1.7.0:
     resolution: {integrity: sha512-6AnjmW98/edgXB+pYDBx7t6QbCogIG6NUzey93JpGTZA4096C+KjSN8y0sj43QRd9XtblrAhoRXHj1pFZ2vsCg==}
-    dev: false
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -6269,10 +6270,6 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  /ismobilejs/1.1.1:
-    resolution: {integrity: sha512-VaFW53yt8QO61k2WJui0dHf4SlL8lxBofUuUmwBo0ljPk0Drz2TiuDW4jo3wDcv41qy/SxrJ+VAzJ/qYqsmzRw==}
-    dev: false
-
   /istanbul-lib-coverage/3.2.0:
     resolution: {integrity: sha512-eOeJ5BHCmHYvQK7xt9GkdHuzuCGS1Y6g9Gvnx3Ym33fz/HpLRYxiS0wHNr+m/MBC8B647Xt608vCDEvhl9c6Mw==}
     engines: {node: '>=8'}
@@ -8794,6 +8791,17 @@ packages:
       - vue-template-compiler
     dev: false
 
+  /react-device-detect/2.2.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-buYY3qrCnQVlIFHrC5UcUoAj7iANs/+srdkwsnNjI7anr3Tt7UY6MqNxtMLlr0tMBied0O49UZVK8XKs3ZIiPw==}
+    peerDependencies:
+      react: '>= 0.14.0'
+      react-dom: '>= 0.14.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      ua-parser-js: 1.0.36
+    dev: false
+
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -10138,6 +10146,10 @@ packages:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  /ua-parser-js/1.0.36:
+    resolution: {integrity: sha512-znuyCIXzl8ciS3+y3fHJI/2OhQIXbXw9MWC/o3qwyR+RGppjZHrM27CGFSKCJXi2Kctiz537iOu2KnXs1lMQhw==}
+    dev: false
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}

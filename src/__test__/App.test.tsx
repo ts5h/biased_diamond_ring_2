@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "../App";
+import { App } from "../App";
 
 // *** The following test does not work currently ***
 test("Mounted #react-p5 div", () => {
