@@ -1,0 +1,13 @@
+@use "../configs/variables";
+
+.react-p5 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  canvas {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    vertical-align: bottom;
+  }
+}
