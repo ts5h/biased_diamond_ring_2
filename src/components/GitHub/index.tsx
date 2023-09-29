@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { isMobile } from "react-device-detect";
 import Styles from "../../scss/components/GitHub.module.scss";
 
 // GitHub Link
-type GitHubLinkType = {
+type Props = {
   theme: "light" | "dark";
   url: string;
 };
 
-export const GitHub = (props: GitHubLinkType) => {
-  const { theme, url } = props;
+export const GitHub: FC<Props> = ({ theme, url }) => {
   const [hover, setHover] = useState(false);
 
   const onMouseHandler = (state: boolean) => {

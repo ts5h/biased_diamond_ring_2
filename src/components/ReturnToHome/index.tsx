@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { isMobile } from "react-device-detect";
 import Styles from "../../scss/components/ReturnToHome.module.scss";
 
+type Props = {
+  theme: "light" | "dark";
+};
+
 // Common "Return To Home" Link
-export const ReturnToHome = (props: { theme: "light" | "dark" }) => {
-  const { theme } = props;
+export const ReturnToHome: FC<Props> = ({ theme }) => {
   const [hover, setHover] = useState(false);
 
   const onMouseHandler = (state: boolean) => {
