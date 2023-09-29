@@ -1,5 +1,6 @@
 import React, { FC, useRef } from "react";
 import { isMobile } from "react-device-detect";
+import { useWindowSize } from "../../hooks/useWindowSize";
 import "../../scss/components/BiasedDiamondRing.scss";
 
 type pointsType = {
@@ -8,15 +9,17 @@ type pointsType = {
   y: number;
 };
 
+const BACKGROUND_COLOR = "rgb(232, 234, 237)";
 const MIN_POINTS = 10;
 const MAX_POINTS = 100;
 
-const canvasSize = {
+const CANVAS_SIZE = {
   width: 4000,
   height: 2500,
 };
 
 export const BiasedDiamondRing: FC = () => {
+  const { windowSize } = useWindowSize();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // let cx = 0;
@@ -30,8 +33,8 @@ export const BiasedDiamondRing: FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      width={canvasSize.width}
-      height={canvasSize.height}
+      width={CANVAS_SIZE.width}
+      height={CANVAS_SIZE.height}
     />
   );
 
