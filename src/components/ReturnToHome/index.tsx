@@ -10,24 +10,24 @@ type Props = {
 export const ReturnToHome: FC<Props> = ({ theme }) => {
   const [hover, setHover] = useState(false);
 
-  const onMouseHandler = (state: boolean) => {
+  const handleOnMouse = (state: boolean) => {
     if (isMobile) return;
     setHover(state);
   };
 
-  const onTouchHandler = (state: boolean) => {
+  const handleOnTouch = (state: boolean) => {
     if (!isMobile) return;
     setHover(state);
   };
 
   return (
     <div
-      onMouseOver={() => onMouseHandler(true)}
-      onMouseOut={() => onMouseHandler(false)}
-      onFocus={() => onMouseHandler(true)}
-      onBlur={() => onMouseHandler(false)}
-      onTouchStart={() => onTouchHandler(true)}
-      onTouchEnd={() => onTouchHandler(false)}
+      onMouseOver={() => handleOnMouse(true)}
+      onMouseOut={() => handleOnMouse(false)}
+      onFocus={() => handleOnMouse(true)}
+      onBlur={() => handleOnMouse(false)}
+      onTouchStart={() => handleOnTouch(true)}
+      onTouchEnd={() => handleOnTouch(false)}
       className={`${Styles.return_to_home} ${
         theme === "light" ? Styles.light : ""
       } ${hover ? Styles.on : ""}`}
