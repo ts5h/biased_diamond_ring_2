@@ -39,6 +39,8 @@ export const BiasedDiamondRing: FC = () => {
 
   const setNewPoints = useCallback(
     (ctx: CanvasRenderingContext2D) => {
+      const getRad = (deg: number) => (deg * Math.PI) / 180;
+
       const localPoints: pointsType[] = [];
       const pointsLength =
         Math.floor(Math.random() * (MAX_POINTS - MIN_POINTS)) + MIN_POINTS;
@@ -53,11 +55,11 @@ export const BiasedDiamondRing: FC = () => {
       const ry = r + Math.random() * 200 - 100;
 
       const rotDeg = Math.random() * 360;
-      const rotRad = (rotDeg * Math.PI) / 180;
+      const rotRad = getRad(rotDeg);
 
       for (let i = 0; i < pointsLength; i++) {
         const deg = Math.random() * 360;
-        const rad = (deg * Math.PI) / 180;
+        const rad = getRad(deg);
 
         const x = rx * Math.cos(rad);
         const y = ry * Math.sin(rad);
