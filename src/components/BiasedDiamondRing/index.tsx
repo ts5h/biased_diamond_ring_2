@@ -34,7 +34,7 @@ export const BiasedDiamondRing: FC = () => {
   let points: pointsType[] = [];
 
   const counterRef = useRef(0);
-  const waitTimeRef = useRef(WAIT_TIME);
+  const waitTimeRef = useRef(0);
 
   const reset = useCallback(() => {
     const ctx = canvasRef.current?.getContext("2d");
@@ -47,6 +47,8 @@ export const BiasedDiamondRing: FC = () => {
   const init = useCallback(() => {
     cx = windowSize.width / 2;
     cy = windowSize.height / 2;
+
+    console.log(cx, cy);
   }, []);
 
   const setPoints = useCallback(() => {}, []);
@@ -59,7 +61,7 @@ export const BiasedDiamondRing: FC = () => {
     }
 
     if (!waitFlag) {
-      if (counterRef.current === 0) {
+      if (counterRef.current >= WAIT_TIME) {
         init();
       }
 
@@ -70,11 +72,10 @@ export const BiasedDiamondRing: FC = () => {
         setWaitFlag(true);
       }
     } else {
-      waitTimeRef.current -= 1;
+      waitTimeRef.current += 1;
 
-      if (waitTimeRef.current <= 0) {
-        reset();
-        setPoints();
+      if (waitTimeRef.current >= WAIT_TIME) {
+        init();
         waitTimeRef.current = WAIT_TIME;
         counterRef.current = 0;
         setWaitFlag(false);
