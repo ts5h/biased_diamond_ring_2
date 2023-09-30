@@ -7,7 +7,7 @@ import "./scss/App.scss";
 export const App: FC = () => (
   <div className="App">
     <ReturnToHome theme="light" />
-    <GitHub theme="light" url="https://github.com/ts5h/biased_diamond_ring" />
+    <GitHub theme="light" />
     <BiasedDiamondRing />
   </div>
 );

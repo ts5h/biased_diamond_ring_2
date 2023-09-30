@@ -1,11 +1,9 @@
 # Biased Diamond Ring 2 - 2023
-https://0bjekt.co/2020/biased_diamond_ring
+
+Drawing a diamond ring in a tilted elliptical shape using React and HTML Canvas.  
+https://0bjekt.co/2020/biased_diamond_ring_2
 
 ![biased_diamond_ring_readme](https://user-images.githubusercontent.com/1344010/146092034-3d65e69e-1eda-420c-bd22-28fdd77c79a0.png)
-
-## Gherciu / react-p5
-https://github.com/Gherciu/react-p5  
-https://codesandbox.io/s/k09k8knxz5  
 
 # Getting Started with Create React App
 

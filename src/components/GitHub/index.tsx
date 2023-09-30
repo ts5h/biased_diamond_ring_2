@@ -5,10 +5,9 @@ import Styles from "../../scss/components/GitHub.module.scss";
 // GitHub Link
 type Props = {
   theme: "light" | "dark";
-  url: string;
 };
 
-export const GitHub: FC<Props> = ({ theme, url }) => {
+export const GitHub: FC<Props> = ({ theme }) => {
   const [hover, setHover] = useState(false);
 
   const handleOnMouse = (state: boolean) => {
@@ -33,7 +32,12 @@ export const GitHub: FC<Props> = ({ theme, url }) => {
         hover ? Styles.on : ""
       }`}
     >
-      <a href={url} target="_blank" title="GitHub" rel="noreferrer">
+      <a
+        href="https://github.com/ts5h/biased_diamond_ring_2"
+        target="_blank"
+        title="GitHub"
+        rel="noreferrer"
+      >
         GitHub
       </a>
     </div>
