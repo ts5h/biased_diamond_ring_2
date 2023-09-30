@@ -50,21 +50,9 @@ export const BiasedDiamondRing: FC = () => {
       const cx = windowSize.width / 2;
       const cy = windowSize.height / 2;
 
-      const r = Math.min(windowSize.width, windowSize.height) / 2;
-      let rx = r + Math.random() * 400 - 200;
-      let ry = r + Math.random() * 400 - 200;
-
-      if (rx > Math.min(windowSize.width, windowSize.height) / 2) {
-        rx =
-          Math.min(windowSize.width, windowSize.height) / 2 -
-          (isMobile ? 10 : 20);
-      }
-
-      if (ry > Math.min(windowSize.width, windowSize.height) / 2) {
-        ry =
-          Math.min(windowSize.width, windowSize.height) / 2 -
-          (isMobile ? 10 : 20);
-      }
+      const rx =
+        Math.min(windowSize.width, windowSize.height) / 2;
+      const ry = Math.random() * (rx * 0.8) + rx * 0.2;
 
       const rotDeg = Math.random() * 360;
       const rotRad = getRad(rotDeg);
