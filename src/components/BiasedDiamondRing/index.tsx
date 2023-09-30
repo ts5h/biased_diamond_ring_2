@@ -51,11 +51,11 @@ export const BiasedDiamondRing: FC = () => {
       const cy = windowSize.height / 2;
 
       let rx = Math.min(windowSize.width, windowSize.height) / 2;
-      let ry = Math.random() * (rx * 0.7) + rx * 0.3;
+      let ry = Math.random() * (rx * 0.65) + rx * 0.35;
 
-      if (rx / ry >= 0.98) {
-        rx *= 0.98;
-        ry *= 0.98;
+      if (rx / ry >= 0.99) {
+        rx *= 0.99;
+        ry *= 0.99;
       }
 
       const rotDeg = Math.random() * 360;
