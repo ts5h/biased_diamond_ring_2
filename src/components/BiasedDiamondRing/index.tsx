@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { useSound } from "../../hooks/useSound";
 import "../../scss/components/BiasedDiamondRing.scss";
 
 type pointsType = {
@@ -22,6 +23,7 @@ const WAIT_TIME = 300;
 
 export const BiasedDiamondRing: FC = () => {
   const { windowSize } = useWindowSize();
+  const { playBeep } = useSound();
 
   const [waitFlag, setWaitFlag] = useState(false);
   const [points, setPoints] = useState<pointsType[]>([]);
@@ -136,6 +138,7 @@ export const BiasedDiamondRing: FC = () => {
         ctx.stroke();
       }
 
+      playBeep();
       counterRef.current += 1;
       if (counterRef.current >= points.length) {
         setWaitFlag(true);
