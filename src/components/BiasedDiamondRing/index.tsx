@@ -12,11 +12,11 @@ type pointsType = {
 
 const BACKGROUND_COLOR = "rgb(232, 234, 237)";
 const MIN_POINTS = 20;
-const MAX_POINTS = 120;
+const MAX_POINTS = isMobile ? 100 : 120;
 
 const CANVAS_SIZE = {
   width: 4000,
-  height: 2500,
+  height: 3000,
 };
 
 const WAIT_TIME = 300;
@@ -50,8 +50,13 @@ export const BiasedDiamondRing: FC = () => {
       const cx = windowSize.width / 2;
       const cy = windowSize.height / 2;
 
-      const rx = Math.min(windowSize.width, windowSize.height) / 2;
-      const ry = Math.random() * (rx * 0.7) + rx * 0.3;
+      let rx = Math.min(windowSize.width, windowSize.height) / 2;
+      let ry = Math.random() * (rx * 0.7) + rx * 0.3;
+
+      if (rx / ry >= 0.98) {
+        rx *= 0.98;
+        ry *= 0.98;
+      }
 
       const rotDeg = Math.random() * 360;
       const rotRad = getRad(rotDeg);
@@ -125,7 +130,10 @@ export const BiasedDiamondRing: FC = () => {
         ctx.stroke();
       }
 
-      playBeep();
+      if (!isMobile && counterRef.current > 0) {
+        playBeep();
+      }
+
       counterRef.current += 1;
       if (counterRef.current >= points.length) {
         setWaitFlag(true);
