@@ -11,7 +11,7 @@ type pointsType = {
 
 const BACKGROUND_COLOR = "rgb(232, 234, 237)";
 const MIN_POINTS = 20;
-const MAX_POINTS = 100;
+const MAX_POINTS = 120;
 
 const CANVAS_SIZE = {
   width: 4000,
@@ -47,12 +47,19 @@ export const BiasedDiamondRing: FC = () => {
 
       const cx = windowSize.width / 2;
       const cy = windowSize.height / 2;
-      const r =
-        Math.min(windowSize.width, windowSize.height) / 2 -
-        (isMobile ? 25 : 50);
 
-      const rx = r + Math.random() * 200 - 100;
-      const ry = r + Math.random() * 200 - 100;
+      const r =
+        Math.min(windowSize.width, windowSize.height) / 2;
+      let rx = r + Math.random() * 400 - 200;
+      let ry = r + Math.random() * 400 - 200;
+
+      if (rx > Math.min(windowSize.width, windowSize.height) / 2) {
+        rx = Math.min(windowSize.width, windowSize.height) / 2 - (isMobile ? 10 : 20);
+      }
+
+      if (ry > Math.min(windowSize.width, windowSize.height) / 2) {
+        ry = Math.min(windowSize.width, windowSize.height) / 2 - (isMobile ? 10 : 20);
+      }
 
       const rotDeg = Math.random() * 360;
       const rotRad = getRad(rotDeg);
@@ -61,6 +68,7 @@ export const BiasedDiamondRing: FC = () => {
         const deg = Math.random() * 360;
         const rad = getRad(deg);
 
+        // Calculate the coordinates of the tilted ellipse
         const x = rx * Math.cos(rad);
         const y = ry * Math.sin(rad);
         const rotX = x * Math.cos(rotRad) - y * Math.sin(rotRad) + cx;
@@ -112,7 +120,7 @@ export const BiasedDiamondRing: FC = () => {
         initialize(ctx);
       }
 
-      ctx.strokeStyle = "rgba(34, 34, 34, 0.5)";
+      ctx.strokeStyle = "rgba(34, 34, 34, 0.4)";
       ctx.lineWidth = 0.2;
 
       for (let i = counterRef.current + 1; i < points.length; i++) {
