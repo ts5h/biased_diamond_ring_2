@@ -9,8 +9,8 @@ type pointsType = {
   y: number;
 };
 
-const BACKGROUND_COLOR = "rgb(255, 255, 255)";
-const MIN_POINTS = 10;
+const BACKGROUND_COLOR = "rgb(232, 234, 237)";
+const MIN_POINTS = 20;
 const MAX_POINTS = 100;
 
 const CANVAS_SIZE = {
@@ -24,34 +24,79 @@ export const BiasedDiamondRing: FC = () => {
   const { windowSize } = useWindowSize();
 
   const [waitFlag, setWaitFlag] = useState(false);
+  const [points, setPoints] = useState<pointsType[]>([]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameIdRef = useRef<number>();
-
-  let cx = 0;
-  let cy = 0;
-  let r = 0;
-  let points: pointsType[] = [];
-
   const counterRef = useRef(0);
+  const animationFrameIdRef = useRef<number>();
   const waitTimeRef = useRef(0);
 
-  const reset = useCallback(() => {
-    const ctx = canvasRef.current?.getContext("2d");
-    if (!ctx) return;
-
+  // Clear the canvas
+  const clearCanvas = useCallback((ctx: CanvasRenderingContext2D) => {
     ctx.fillStyle = BACKGROUND_COLOR;
     ctx.fillRect(0, 0, CANVAS_SIZE.width, CANVAS_SIZE.height);
   }, []);
 
-  const init = useCallback(() => {
-    cx = windowSize.width / 2;
-    cy = windowSize.height / 2;
+  const setNewPoints = useCallback(
+    (ctx: CanvasRenderingContext2D) => {
+      const localPoints: pointsType[] = [];
+      const pointsLength =
+        Math.floor(Math.random() * (MAX_POINTS - MIN_POINTS)) + MIN_POINTS;
 
-    console.log(cx, cy);
-  }, []);
+      const cx = windowSize.width / 2;
+      const cy = windowSize.height / 2;
+      const r =
+        Math.min(windowSize.width, windowSize.height) / 2 -
+        (isMobile ? 25 : 50);
 
-  const setPoints = useCallback(() => {}, []);
+      const rx = r + Math.random() * 200 - 100;
+      const ry = r + Math.random() * 200 - 100;
+
+      const rotDeg = Math.random() * 360;
+      const rotRad = (rotDeg * Math.PI) / 180;
+
+      for (let i = 0; i < pointsLength; i++) {
+        const deg = Math.random() * 360;
+        const rad = (deg * Math.PI) / 180;
+
+        const x = rx * Math.cos(rad);
+        const y = ry * Math.sin(rad);
+        const rotX = x * Math.cos(rotRad) - y * Math.sin(rotRad) + cx;
+        const rotY = x * Math.sin(rotRad) + y * Math.cos(rotRad) + cy;
+
+        localPoints.push({ deg, x: rotX, y: rotY });
+      }
+
+      localPoints.sort((a, b) => {
+        if (a.deg < b.deg) return -1;
+        if (a.deg > b.deg) return 1;
+        return 0;
+      });
+
+      setPoints(localPoints);
+
+      // Show the points length
+      ctx.fillStyle = "rgba(68, 68, 68, 0.8)";
+      ctx.font = "10px Inter";
+      ctx.textAlign = "right";
+      ctx.textBaseline = "bottom";
+      ctx.fillText(
+        `${pointsLength}`,
+        windowSize.width - 8,
+        windowSize.height - 8,
+      );
+    },
+    [windowSize],
+  );
+
+  const initialize = useCallback(
+    (ctx: CanvasRenderingContext2D) => {
+      clearCanvas(ctx);
+      setNewPoints(ctx);
+      setWaitFlag(false);
+    },
+    [clearCanvas, setNewPoints],
+  );
 
   const render = useCallback(() => {
     const ctx = canvasRef.current?.getContext("2d");
@@ -62,20 +107,31 @@ export const BiasedDiamondRing: FC = () => {
 
     if (!waitFlag) {
       if (counterRef.current >= WAIT_TIME) {
-        init();
+        initialize(ctx);
       }
 
-      // TODO: Draw the diamond ring
+      ctx.strokeStyle = "rgba(34, 34, 34, 0.5)";
+      ctx.lineWidth = 0.2;
+
+      for (let i = counterRef.current + 1; i < points.length; i++) {
+        const { x: x1, y: y1 } = points[counterRef.current];
+        const { x: x2, y: y2 } = points[i];
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
 
       counterRef.current += 1;
       if (counterRef.current >= points.length) {
         setWaitFlag(true);
       }
     } else {
-      waitTimeRef.current += 1;
+      waitTimeRef.current -= 1;
 
-      if (waitTimeRef.current >= WAIT_TIME) {
-        init();
+      if (waitTimeRef.current <= 0) {
+        initialize(ctx);
         waitTimeRef.current = WAIT_TIME;
         counterRef.current = 0;
         setWaitFlag(false);
@@ -83,7 +139,7 @@ export const BiasedDiamondRing: FC = () => {
     }
 
     animationFrameIdRef.current = requestAnimationFrame(render);
-  }, [windowSize]);
+  }, [points, waitFlag]);
 
   useEffect(() => {
     render();
