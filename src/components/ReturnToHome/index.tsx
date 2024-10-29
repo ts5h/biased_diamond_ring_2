@@ -28,9 +28,7 @@ export const ReturnToHome: FC<Props> = ({ theme }) => {
       onBlur={() => handleOnMouse(false)}
       onTouchStart={() => handleOnTouch(true)}
       onTouchEnd={() => handleOnTouch(false)}
-      className={`${Styles.return_to_home} ${
-        theme === "light" ? Styles.light : ""
-      } ${hover ? Styles.on : ""}`}
+      className={`${Styles.return_to_home} ${theme === "light" ? Styles.light : ""} ${hover ? Styles.on : ""}`}
     >
       <a href="/" title="HOME">
         HOME

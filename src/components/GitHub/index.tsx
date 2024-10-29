@@ -28,9 +28,7 @@ export const GitHub: FC<Props> = ({ theme }) => {
       onBlur={() => handleOnMouse(false)}
       onTouchStart={() => handleOnTouch(true)}
       onTouchEnd={() => handleOnTouch(false)}
-      className={`${Styles.github} ${theme === "light" ? Styles.light : ""} ${
-        hover ? Styles.on : ""
-      }`}
+      className={`${Styles.github} ${theme === "light" ? Styles.light : ""} ${hover ? Styles.on : ""}`}
     >
       <a
         href="https://github.com/ts5h/biased_diamond_ring_2"
