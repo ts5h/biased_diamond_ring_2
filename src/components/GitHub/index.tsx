@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { type FC, useState } from "react";
 import { isMobile } from "react-device-detect";
 import Styles from "../../scss/components/GitHub.module.scss";
 

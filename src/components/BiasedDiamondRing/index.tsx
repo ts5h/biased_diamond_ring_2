@@ -1,7 +1,13 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  type FC,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { isMobile } from "react-device-detect";
-import { useWindowSize } from "../../hooks/useWindowSize";
 import { useSound } from "../../hooks/useSound";
+import { useWindowSize } from "../../hooks/useWindowSize";
 import "../../scss/components/BiasedDiamondRing.scss";
 
 type pointsType = {
@@ -30,7 +36,7 @@ export const BiasedDiamondRing: FC = () => {
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const counterRef = useRef(0);
-  const animationFrameIdRef = useRef<number>();
+  const animationFrameIdRef = useRef<number>(0);
   const waitTimeRef = useRef(0);
 
   // Clear the canvas
@@ -108,7 +114,6 @@ export const BiasedDiamondRing: FC = () => {
   const render = useCallback(() => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) {
-      render();
       return;
     }
 
