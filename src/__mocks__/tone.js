@@ -1,5 +1,5 @@
 // Mock for Tone.js to handle Jest testing
-export class Oscillator {
+class Oscillator {
   constructor() {
     this.frequency = { value: 440 };
     this.type = "square";
@@ -26,7 +26,7 @@ export class Oscillator {
   }
 }
 
-export class Limiter {
+class Limiter {
   constructor(threshold) {
     this.threshold = threshold;
   }
@@ -40,7 +40,7 @@ export class Limiter {
   }
 }
 
-export class Synth {
+class Synth {
   constructor() {
     this.oscillator = new Oscillator();
   }
@@ -62,16 +62,23 @@ export class Synth {
   }
 }
 
-export const getContext = () => ({
+const getContext = () => ({
   state: "running",
 });
 
-export const start = () => Promise.resolve();
+const start = () => Promise.resolve();
 
-export default {
+module.exports = {
   Oscillator,
   Limiter,
   Synth,
   getContext,
   start,
+  default: {
+    Oscillator,
+    Limiter,
+    Synth,
+    getContext,
+    start,
+  },
 };
