@@ -1,10 +1,4 @@
-import React, {
-  type FC,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type FC, useCallback, useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useSound } from "../../hooks/useSound";
 import { useWindowSize } from "../../hooks/useWindowSize";
